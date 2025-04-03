@@ -1,5 +1,6 @@
 import Calculadora from './components/Calculadora';
 import Historico from './components/Historico';
+import './index.css';
 
 function App() {
   return (
