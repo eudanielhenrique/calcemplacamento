@@ -7,7 +7,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900">Calculadora de Taxas Veiculares</h1>
+          <h1 className="text-4xl font-bold text-gray-900">Calculadora de Emplacamento</h1>
           <p className="mt-2 text-lg text-gray-600">
             Calcule taxas para Venda Direta e Venda Estoque
           </p>

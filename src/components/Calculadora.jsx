@@ -32,33 +32,36 @@ const Calculadora = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Calculadora de Taxas</h1>
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">Calculadora de Taxas</h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
           <div>
             <label htmlFor="valorNota" className="block text-sm font-medium text-gray-700 mb-1">
-              Valor da Nota Fiscal
+              Valor da Nota Fiscal:
             </label>
-            <input
-              type="text"
-              id="valorNota"
-              value={valorNota ? valorNota.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : ''}
-              onChange={(e) => {
-                const value = e.target.value.replace(/[^0-9]/g, '');
-                const numberValue = value ? parseFloat(value) / 100 : 0;
-                setValorNota(numberValue);
-              }}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="R$ 0,00"
-              required
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">R$</span>
+              <input
+                type="text"
+                id="valorNota"
+                value={valorNota ? valorNota.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : ''}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/[^0-9]/g, '');
+                  const numberValue = value ? parseFloat(value) / 100 : 0;
+                  setValorNota(numberValue);
+                }}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="0,00"
+                required
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Venda</label>
-            <div className="flex space-x-4">
-              <label className="flex items-center">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de Venda</label>
+            <div className="grid grid-cols-2 gap-4">
+              <label className="flex items-center p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
                 <input
                   type="radio"
                   value="direta"
@@ -68,7 +71,7 @@ const Calculadora = () => {
                 />
                 <span className="ml-2">Venda Direta (2%)</span>
               </label>
-              <label className="flex items-center">
+              <label className="flex items-center p-3 border rounded-md hover:bg-gray-50 cursor-pointer">
                 <input
                   type="radio"
                   value="estoque"
@@ -81,8 +84,8 @@ const Calculadora = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <label className="flex items-center">
+          <div className="p-3 border rounded-md hover:bg-gray-50">
+            <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"
                 checked={taxaAlienacao}
@@ -99,18 +102,18 @@ const Calculadora = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 p-4 rounded-lg">
-          <h2 className="text-lg font-semibold text-gray-700 mb-2">Valores Fixos Incluídos:</h2>
-          <ul className="text-sm text-gray-600 space-y-1">
+        <div className="border rounded-md p-4">
+          <h2 className="text-sm font-medium text-gray-700 mb-2">Valores Fixos Incluídos:</h2>
+          <ul className="text-sm text-gray-600 space-y-2">
             <li>• Taxa de primeiro emplacamento: R$ 435,00</li>
             <li>• Placa: R$ 290,00</li>
             <li>• Honorários: R$ 200,00</li>
           </ul>
         </div>
 
-        <div className="bg-blue-50 p-4 rounded-lg space-y-4">
+        <div className="border rounded-md p-4 space-y-4">
           <div>
-            <h3 className="text-lg font-semibold text-gray-700">Detalhamento do Cálculo:</h3>
+            <h3 className="text-sm font-medium text-gray-700">Detalhamento do Cálculo:</h3>
             {detalhamento && (
               <div className="space-y-2 mt-2">
                 <p className="text-sm text-gray-600">
@@ -144,10 +147,12 @@ const Calculadora = () => {
             )}
           </div>
           <div className="border-t border-gray-200 pt-4">
-            <h2 className="text-xl font-bold text-gray-800">Valor Total:</h2>
-            <p className="text-2xl font-bold text-blue-600">
-              R$ {valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </p>
+            <div className="flex justify-between items-center">
+              <h2 className="text-base font-medium text-gray-700">Valor Total:</h2>
+              <p className="text-lg font-semibold text-gray-900">
+                R$ {valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </p>
+            </div>
           </div>
         </div>
 
