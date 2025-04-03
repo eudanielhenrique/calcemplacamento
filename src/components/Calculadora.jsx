@@ -126,7 +126,7 @@ const Calculadora = () => {
                   • Meses restantes: {detalhamento.mesesRestantes}
                 </p>
                 <p className="text-sm text-gray-600">
-                  • Total da taxa: R$ {detalhamento.totalTaxaMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                  • Valor do IPVA: R$ {detalhamento.totalTaxaMensal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </p>
                 <div className="border-t border-gray-200 my-2"></div>
                 <p className="text-sm text-gray-600">
