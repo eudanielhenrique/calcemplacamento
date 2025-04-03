@@ -6,5 +6,18 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true
-  }
+  },
+  build: {
+    cssMinify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
 })
